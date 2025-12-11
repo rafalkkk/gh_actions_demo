@@ -1,0 +1,31 @@
+name: .Net App
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dotnetwebapp/**'
+      - '.github/workflows/dotnet-app.yml'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build
+        run: dotnet build 
+
+      - name: Test
+        run: dotnet test 
