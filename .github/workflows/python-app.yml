@@ -66,8 +66,7 @@ jobs:
           update-pip: "true"
 
       - name: Build project
-        run: pyinstaller --onefile py-upper/upper.py
+        run: pyinstaller --onefile py-upper/uppercase.py
 
       - name: List build output
         run: ls -R dist/
-        
