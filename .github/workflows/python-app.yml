@@ -1,0 +1,32 @@
+name: Python Uppercase
+
+on:
+  push:
+    paths:
+      - ".github/workflows/python-app.yml"
+      - "py-upper/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check python version
+        run: python -V
+
+      - name: Display current directory
+        run: pwd 
+
+      - name: List files
+        run: ls -R   
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Check python version
+        run: python -V          
