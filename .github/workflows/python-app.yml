@@ -41,3 +41,7 @@ jobs:
         with:
           path: "py-upper/requirements.txt"
           update-pip: "true"
+
+      - name: Run tests
+        working-directory: py-upper
+        run: pytest -v          
