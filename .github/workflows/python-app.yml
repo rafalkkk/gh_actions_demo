@@ -74,6 +74,16 @@ jobs:
       - name: List build output
         run: ls -R dist/
 
+      - name: Rename the exe file
+        run: mv dist/uppercase.exe dist/uppercase-${{ matrix.python-version }}.exe
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: uppercase-${{ matrix.python-version }}
+          path: dist/uppercase-${{ matrix.python-version }}.exe 
+          
+
       # - name: Release
       #   uses: softprops/action-gh-release@v2
       #   with:
