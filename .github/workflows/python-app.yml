@@ -95,10 +95,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download build artifacts
+      - name: Download build artifacts 3.12
         uses: actions/download-artifact@v4
         with:
-          name: artifacts/      
+          name: uppercase-3.12
+
+      - name: Download build artifacts 3.13
+        uses: actions/download-artifact@v4
+        with:
+          name: uppercase-3.13
 
       - name: List directory
         run: ls -R
@@ -110,4 +115,3 @@ jobs:
           body: "Binaries of the uppercase program for different Python versions"
           tag_name: ${{ github.ref_name }}
 
-          
