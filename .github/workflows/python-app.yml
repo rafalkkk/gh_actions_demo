@@ -1,7 +1,7 @@
 name: Python Uppercase
 
 on:
-  push:
+  push: 
     paths:
       - ".github/workflows/python-app.yml"
       - "py-upper/**"
@@ -50,6 +50,9 @@ jobs:
   build:
     runs-on: windows-latest
     needs: test
+    strategy:
+      matrix:
+        python-version: ['3.13', '3.12']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -57,7 +60,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: ${{ matrix.python-version }}
 
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
@@ -71,9 +74,9 @@ jobs:
       - name: List build output
         run: ls -R dist/
 
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/**
-          body: "Binaries of the uppercase program"
-          tag_name: ${{ github.ref_name }}
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     files: dist/**
+      #     body: "Binaries of the uppercase program"
+      #     tag_name: ${{ github.ref_name }}
