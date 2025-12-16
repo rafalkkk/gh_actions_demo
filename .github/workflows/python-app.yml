@@ -111,7 +111,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/**
+          files: ./**
           body: "Binaries of the uppercase program for different Python versions"
           tag_name: ${{ github.ref_name }}
 
