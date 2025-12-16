@@ -99,7 +99,7 @@ jobs:
       - name: Download build artifacts (all versions)
         uses: actions/download-artifact@v4
         with:
-          pattern: uppercase-*
+#          pattern: uppercase-*
           path: ./artifacts-for-release
 
       # - name: Download build artifacts 3.13
@@ -113,7 +113,7 @@ jobs:
       - name: Create Release for version
         uses: softprops/action-gh-release@v2
         with:
-          files: ./artifacts-for-release/**
+          files: ./artifacts-for-release/uppercase-*.exe
           body: "Binaries of the uppercase program for different Python versions"
           tag_name: ${{ github.ref_name }}
 
