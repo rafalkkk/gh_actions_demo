@@ -99,12 +99,12 @@ jobs:
       - name: Download build artifacts 3.12
         uses: actions/download-artifact@v4
         with:
-          name: uppercase-3.12
+          name: uppercase-*
 
-      - name: Download build artifacts 3.13
-        uses: actions/download-artifact@v4
-        with:
-          name: uppercase-3.13
+      # - name: Download build artifacts 3.13
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: uppercase-3.13
 
       - name: List directory
         run: ls -R
