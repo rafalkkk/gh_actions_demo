@@ -90,3 +90,24 @@ jobs:
       #     files: dist/**
       #     body: "Binaries of the uppercase program"
       #     tag_name: ${{ github.ref_name }}
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts/      
+
+      - name: List directory
+        run: ls -R
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**
+          body: "Binaries of the uppercase program for different Python versions"
+          tag_name: ${{ github.ref_name }}
+
+          
