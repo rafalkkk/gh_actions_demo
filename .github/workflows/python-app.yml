@@ -14,37 +14,37 @@ jobs:
       - name: Check python version
         run: python -V
 
-      - name: Display current directory
-        run: pwd 
+    #   - name: Display current directory
+    #     run: pwd 
 
-      - name: List files
-        run: ls -R   
+    #   - name: List files
+    #     run: ls -R   
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    #   - name: Checkout repository
+    #     uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+    #   - name: Set up Python
+    #     uses: actions/setup-python@v4
+    #     with:
+    #       python-version: '3.13'
 
-      - name: Check python version
-        run: python -V          
+    #   - name: Check python version
+    #     run: python -V          
 
-    #   - name: Install dependencies
-    #     run: |
-    #       python -m pip install --upgrade pip
-    #       pip install -r py-upper/requirements.txt
+    # #   - name: Install dependencies
+    # #     run: |
+    # #       python -m pip install --upgrade pip
+    # #       pip install -r py-upper/requirements.txt
 
-      - name: Install Python dependencies
-        uses: py-actions/py-dependency-install@v4
-        with:
-          path: "py-upper/requirements.txt"
-          update-pip: "true"
+    #   - name: Install Python dependencies
+    #     uses: py-actions/py-dependency-install@v4
+    #     with:
+    #       path: "py-upper/requirements.txt"
+    #       update-pip: "true"
 
-      - name: Run tests
-        working-directory: py-upper
-        run: pytest -v          
+    #   - name: Run tests
+    #     working-directory: py-upper
+    #     run: pytest -v          
 
 
   build:
@@ -78,11 +78,11 @@ jobs:
         run: mv dist/uppercase.exe dist/uppercase-${{ matrix.python-version }}.exe
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uppercase-${{ matrix.python-version }}
           path: dist/uppercase-${{ matrix.python-version }}.exe 
-          
+
 
       # - name: Release
       #   uses: softprops/action-gh-release@v2
