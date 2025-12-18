@@ -7,6 +7,8 @@ on:
 jobs:
   add_comment:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Show payload
         run: echo "$VAR_EVENT_PAYLOAD"
