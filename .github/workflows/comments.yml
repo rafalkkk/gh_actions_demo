@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+    outputs:
+      COMMENT_ID_X: ${{ steps.add_comment.outputs.COMMENT_ID }}
     steps:
       - name: Show payload
         run: echo "$VAR_EVENT_PAYLOAD"
@@ -21,8 +23,8 @@ jobs:
            echo "Issue number is: $ISSUE"
            echo "Repo full name is: $REPO"
            echo "The token is: $GH_TOKEN"
-           COMMENT_ID_1=$(gh issue comment $ISSUE --body "Ohh thank you for contacting us!" --repo $REPO)
-           echo "COMMENT_ID_2=$COMMENT_ID_1" >> $GITHUB_OUTPUT
+           COMMENT_ID=$(gh issue comment $ISSUE --body "Ohh thank you for contacting us!" --repo $REPO)
+           echo "COMMENT_ID=$COMMENT_ID" >> $GITHUB_OUTPUT
         env: 
           ISSUE: ${{ github.event.issue.number }}
           REPO: ${{ github.event.repository.full_name }}
@@ -31,11 +33,18 @@ jobs:
           
       - name: Show the ID
         run: |
-          echo "COMMENT_ID IS: $COMMENT_ID_3"
+          echo "COMMENT_ID IS: $COMMENT_ID"
         env: 
-          COMMENT_ID_3: ${{ steps.add_comment.outputs.COMMENT_ID_2 }}
+          COMMENT_ID: ${{ steps.add_comment.outputs.COMMENT_ID }}
    
-          
+  display_id:
+    runs-on: ubuntu-latest
+    needs: add_comment
+    steps:          
+      - name: Display the value form previous job
+        run: echo "THE VALUE FORM PREVIOUS JOB WAS $COMMENT_ID"
+        env:
+          COMMENT_ID: ${{ needs.add_comment.outputs.COMMENT_ID_X }}
 
 
     
