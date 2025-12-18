@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "COMMENT_ID IS: $COMMENT_ID_3"
         env: 
-          $COMMENT_ID_3: ${{ steps.add_comment.outputs.COMMENT_ID_2 }}
+          COMMENT_ID_3: ${{ steps.add_comment.outputs.COMMENT_ID_2 }}
    
           
 
