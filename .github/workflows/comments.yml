@@ -1,0 +1,17 @@
+name: Auto-comment-issue
+
+on:
+  issues:
+    types: opened
+
+jobs:
+  add_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show payload
+        run: echo "$VAR_EVENT_PAYLOAD"
+        env: 
+          VAR_EVENT_PAYLOAD: ${{ toJson(github.event) }}
+
+
+    
