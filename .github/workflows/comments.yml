@@ -16,17 +16,23 @@ jobs:
           VAR_EVENT_PAYLOAD: ${{ toJson(github.event) }}
 
       - name: Add a comment
+        id: add_comment
         run: |
            echo "Issue number is: $ISSUE"
            echo "Repo full name is: $REPO"
            echo "The token is: $GH_TOKEN"
-           gh issue comment $ISSUE --body "Ohh thank you for contacting us!" --repo $REPO
+           COMMENT_ID_1=$(gh issue comment $ISSUE --body "Ohh thank you for contacting us!" --repo $REPO)
+           echo "COMMENT_ID_2=$COMMENT_ID_1" >> $GITHUB_OUTPUT
         env: 
           ISSUE: ${{ github.event.issue.number }}
           REPO: ${{ github.event.repository.full_name }}
           # GH_TOKEN: ${{ github.token }}
           GH_TOKEN: ${{ secrets.PAT_FOR_MY_REPO }}
           
+      - name: Show the ID
+        run: echo "COMMENT_ID IS: $COMMENT_ID_3"
+        env: 
+          $COMMENT_ID_3: ${{ steps.add_comment.outputs.COMMENT_ID_2 }}
    
           
 
