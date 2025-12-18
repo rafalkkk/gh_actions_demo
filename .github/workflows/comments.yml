@@ -24,7 +24,9 @@ jobs:
         env: 
           ISSUE: ${{ github.event.issue.number }}
           REPO: ${{ github.event.repository.full_name }}
-          GH_TOKEN: ${{ github.token }}
+          # GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_MY_REPO }}
+          
    
           
 
