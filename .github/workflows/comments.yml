@@ -6,7 +6,8 @@ on:
 
 jobs:
   add_comment:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       issues: write
     outputs:
@@ -38,7 +39,8 @@ jobs:
           COMMENT_ID: ${{ steps.add_comment.outputs.COMMENT_ID }}
    
   display_id:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: add_comment
     steps:          
       - name: Display the value form previous job
