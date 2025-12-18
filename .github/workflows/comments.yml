@@ -13,5 +13,16 @@ jobs:
         env: 
           VAR_EVENT_PAYLOAD: ${{ toJson(github.event) }}
 
+      - name: Add a comment
+        run: |
+           echo "Issue number is: $ISSUE"
+           echo "Repo full name is: $REPO"
+           gh issue comment $ISSUE --body "Ohh thank you for contacting us!" --repo $REPO
+        env: 
+          ISSUE: ${{ github.event.issue.number }}
+          REPO: ${{ github.event.repository.full_name }}
+   
+          
+
 
     
